@@ -1,0 +1,18 @@
+@import "colors";
+
+.App {
+  border: 1px none $main;;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: $main;
+  padding: 1px;
+  margin: 10px;
+}
+
+.listItem {
+  font-family: Arial, Helvetica, sans-serif;
+  color: $secondary;
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+}

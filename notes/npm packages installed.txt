@@ -1,0 +1,8 @@
+npm install --save-dev webpack webpack-dev-server
+npm install --save-dev webpack-cli
+npm install --save-dev @babel/core -D babel-loader @babel/core @babel/preset-env babel-preset-es2015
+npm install --save-dev html-loader html-webpack-plugin file-loader
+npm install --save-dev clean-webpack-plugin
+npm install --save-dev @babel/preset-react
+npm install react react-dom
+npm install --save-dev css-loader style-loader sass-loader node-sass
