@@ -1,34 +1,35 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jquery": true
+    env: {
+        browser: true,
+        es6: true,
+        jquery: true
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 2015
+    extends: "eslint:recommended",
+    parserOptions: {
+        ecmaVersion: 2015
     },
-    "globals": {
-        "_": true 
+    globals: {
+        _: true
     },
-    "rules": {
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
+    rules: {
+        "arrow-body-style": ["error", "always"],
+        "block-scoped-var": 2,
+        "camelcase": 2,
+        "curly": 2,
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "double"],
+        "semi": ["error", "always"],
         "new-cap": 0,
+        "no-console": 2,
+        "no-debugger": 2,
         "no-caller": 2,
         "no-undef": 2,
-        "no-unused-vars": ["error", { "args": "none" }],
-        "no-empty": ["error", { "allowEmptyCatch": true }],
-        "no-console": "off"
+        "no-empty": ["error", {
+            allowEmptyCatch: true
+        }],
+        "no-const-assign": 2,
+        "no-var": 2,
+        "prefer-const": 2,
+        "template-curly-spacing": ["error", "never"]
     }
 };

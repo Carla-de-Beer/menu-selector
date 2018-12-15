@@ -1,7 +1,8 @@
 class UtilHelper {
+	constructor() {}
 
 	loadJSON(filePath, callback) {
-		let xobj = new XMLHttpRequest();
+		const xobj = new XMLHttpRequest();
 		xobj.overrideMimeType("application/json");
 		xobj.open("GET", filePath, true);
 		xobj.onreadystatechange = function () {
@@ -27,13 +28,13 @@ class UtilHelper {
 		}
 		let result = "";
 		for (let i = 0, l = array.length; i < l; ++i) {
-			result += (array[i]);
-			if (i !== array.length-1) {
-				result += (", ");
+			result += array[i];
+			if (i !== array.length - 1) {
+				result += ", ";
 			}
 		}
 		return result;
-		}
+	}
 
 	countOccurrences(array, value) {
 		if (arguments[0].constructor !== Array) {
@@ -41,8 +42,9 @@ class UtilHelper {
 		}
 		let numFound = 0;
 		for (let i = 0, l = array.length; i < l; ++i) {
-			if (array[i] === value)
+			if (array[i] === value) {
 				numFound++;
+			}
 		}
 		return numFound;
 	}
@@ -50,7 +52,9 @@ class UtilHelper {
 	calculateDinerBill(allItems, selection) {
 		let total = 0.0;
 		for (let i = 0, l = selection.length; i < l; ++i) {
-			let foundItem = _.find(allItems, entry => {return entry.name === selection[i];});
+			const foundItem = _.find(allItems, entry => {
+				return entry.name === selection[i];
+			});
 			if (foundItem !== undefined) {
 				total += foundItem.price;
 			}
@@ -60,12 +64,14 @@ class UtilHelper {
 
 	calculateTotalBill(allItems, selection1, selection2) {
 		// Add all of the menu items to one array for a single loop
-		let combinedSelection = [];
+		const combinedSelection = [];
 		combinedSelection.push.apply(combinedSelection, selection1);
 		combinedSelection.push.apply(combinedSelection, selection2);
 		let total = 0.0;
 		for (let i = 0, l = combinedSelection.length; i < l; ++i) {
-			let foundItem = _.find(allItems, entry => {return entry.name === combinedSelection[i];});
+			const foundItem = _.find(allItems, entry => {
+				return entry.name === combinedSelection[i];
+			});
 			if (foundItem !== undefined) {
 				total += foundItem.price;
 			}
@@ -74,7 +80,9 @@ class UtilHelper {
 	}
 
 	createDialog(title, message) {
-		$("#dialog").attr("title", title).dialog();
+		$("#dialog")
+			.attr("title", title)
+			.dialog();
 		$("#dialog").text(message);
 		$("#dialog").dialog({
 			height: "auto",
@@ -83,17 +91,20 @@ class UtilHelper {
 			modal: true,
 			position: "center",
 			draggable: false,
-			buttons: { 
-			"Ok": function() { 
-			$(this).dialog("close"); 
-			$(this).dialog("option", "hide");
-			} 
-		} 
+			buttons: {
+				Ok: function () {
+					$(this).dialog("close");
+					$(this).dialog("option", "hide");
+				}
+			}
 		});
 		//$("#dialog").dialog("option", "title", title);
 		$("#dialog").dialog("open");
 	}
-
 }
 
-module.exports = UtilHelper; /* eslint no-undef: 0 */ // --> OFF
+try {
+	module.exports = UtilHelper; /* eslint no-undef: 0 */ // --> OFF
+} catch (err) {
+
+}
