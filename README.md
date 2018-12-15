@@ -1,4 +1,7 @@
 # Menu Selector
+[![Build Status](https://circleci.com/gh/Carla-de-Beer/Menu-Selector.png?&style=shield&circle-token=:circle-token)](https://circleci.com/gh/Carla-de-Beer/Matrix-Library)
+[![GitHub issues](https://img.shields.io/github/issues/Carla-de-Beer/Menu-Selector.svg?style=flat-square)](https://github.com/Carla-de-Beer/Menu-Selector/issues)
+
 A simple menu selector, written in plain vanilla JavaScript (ES6), that allows a user to book a meal, consisting of two courses, for two diners respectively. The project can be run simply with a local server.
 
 ### Booking rules
@@ -15,7 +18,8 @@ A simple menu selector, written in plain vanilla JavaScript (ES6), that allows a
 * jQueryUI is used for the dialog messages. A more contemporary UI library could be considered for future development work.
 
 ### Currently outstanding
-- [ ] Continous integration to be incorporated into the respository.
+- [x] Continous integration to be incorporated into the respository.
+- [ ] ESLint to be configured.
 - [ ] Module bundling with Webpack 4 to be added (this has been implemented separately, but could not be successfully combined with Jest in time for the submission).
 
 ### Future development
