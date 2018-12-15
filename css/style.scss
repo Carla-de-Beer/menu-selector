@@ -1,5 +1,6 @@
 body {
-  padding: 0; margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 canvas {
@@ -15,7 +16,8 @@ canvas {
 }
 
 .result {
-  @extend .baseText, .baseParagraph;
+  @extend .baseText,
+  .baseParagraph;
   position: relative;
   top: -348px;
   left: 650px;
@@ -33,7 +35,8 @@ h4 {
 }
 
 p {
-  @extend .baseText, .baseParagraph;
+  @extend .baseText,
+  .baseParagraph;
   font-weight: 100;
   color: #77787E;
 }
@@ -58,7 +61,7 @@ p {
 
 .para1Bold {
   @extend p;
-  font-weight: 200;
+  font-weight: 180;
   color: #77787E;
   font-style: bold;
 }
@@ -71,21 +74,24 @@ p {
 
 .starters {
   @extend .baseCourse;
-  background: rgba(233, 187, 70, 0.5);
+  // background: rgba(233, 187, 70, 0.5);
+  background-image: linear-gradient(rgba(240, 230, 220, 0.95), rgba(233, 187, 70, 0.5));
   left: 0;
   top: 90px;
 }
 
 .mains {
   @extend .baseCourse;
-  background: rgba(230, 129, 46, 0.5);
+  // background: rgba(230, 129, 46, 0.5);
+  background-image: linear-gradient(rgba(240, 230, 220, 0.95), rgba(230, 129, 46, 0.5));
   left: 420px;
   top: 90px;
 }
 
 .desserts {
   @extend .baseCourse;
-  background: rgba(250, 94, 69, 0.5);
+  //background: rgba(250, 94, 69, 0.5);
+  background-image: linear-gradient(rgba(240, 230, 220, 0.95), rgba(250, 94, 69, 0.5));
   left: 840px;
   top: 90px;
 }
@@ -94,20 +100,28 @@ p {
   position: absolute;
   color: #77787E;
   font-weight: bold;
-  background: #fff;
-  padding: 15px;
+  font-size: 13px;
+  background: #f6f6f6;
+  padding: 18px;
   width: auto;
+  outline: none;
+}
+
+.baseDiner:focus {
+  outline: none;
 }
 
 .diner1 {
   @extend .baseDiner;
   left: 0;
-  top: 595px;}
+  top: 595px;
+}
 
 .diner2 {
   @extend .baseDiner;
   left: 420px;
-  top: 595px;}
+  top: 595px;
+}
 
 .finaliseOrder {
   @extend .baseDiner;
@@ -128,30 +142,30 @@ p {
 .list1 {
   @extend .baseList;
   left: 0;
-  top: 620px;
+  top: 630px;
 }
 
 .list2 {
   @extend .baseList;
   left: 420px;
-  top: 620px;
+  top: 630px;
 }
 
 .billDiner1 {
   @extend .baseList;
-  left: 170px;
+  left: 190px;
   top: 577px;
 }
 
 .billDiner2 {
   @extend .baseList;
-  left: 590px;
+  left: 610px;
   top: 577px;
 }
 
 .billTotal {
   @extend .baseList;
-  left: 1000px;
+  left: 1020px;
   top: 577px;
 }
 
