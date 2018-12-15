@@ -1,7 +1,7 @@
 class UtilHelper {
 
 	loadJSON(filePath, callback) {
-		var xobj = new XMLHttpRequest();
+		let xobj = new XMLHttpRequest();
 		xobj.overrideMimeType("application/json");
 		xobj.open("GET", filePath, true);
 		xobj.onreadystatechange = function () {
@@ -12,14 +12,14 @@ class UtilHelper {
 			}
 		};
 		xobj.send(null);
-	};
+	}
 
 	intToFloat(num) {
 		if (!isNaN(parseFloat(num)) && isFinite(num)) {
 			return parseFloat(num).toFixed(2);
 		}
 		return "";
-	};
+	}
 
 	splitArrayIntoString(array) {
 		if (array.constructor !== Array) {
@@ -33,7 +33,7 @@ class UtilHelper {
 			}
 		}
 		return result;
-		};
+		}
 
 	countOccurrences(array, value) {
 		if (arguments[0].constructor !== Array) {
@@ -45,7 +45,7 @@ class UtilHelper {
 				numFound++;
 		}
 		return numFound;
-	};
+	}
 
 	calculateDinerBill(allItems, selection) {
 		let total = 0.0;
@@ -56,7 +56,7 @@ class UtilHelper {
 			}
 		}
 		return total;
-	};
+	}
 
 	calculateTotalBill(allItems, selection1, selection2) {
 		// Add all of the menu items to one array for a single loop
@@ -71,7 +71,7 @@ class UtilHelper {
 			}
 		}
 		return total;
-	};
+	}
 
 	createDialog(title, message) {
 		$("#dialog").attr("title", title).dialog();
@@ -92,8 +92,8 @@ class UtilHelper {
 		});
 		//$("#dialog").dialog("option", "title", title);
 		$("#dialog").dialog("open");
-	};
+	}
 
 }
 
-module.exports = UtilHelper;
+module.exports = UtilHelper; /* eslint no-undef: 0 */ // --> OFF

@@ -13,13 +13,16 @@ A simple menu selector, written in plain vanilla JavaScript (ES6), that allows a
 * An error message is displayed when I try to select an invalid menu combination.
 
 ### Technical notes
-* Unit tests for the utility helper methods are written in Jest and can be run with the command `npm run test` (install the Jest packages with `npm install --save-dev jest`, if using npm).
-* SCSS is used as the CSS library.
+* The folowing node packages were used:
+    * ESList: `npm install --save-dev eslint`.
+    * Jest: `npm install --save-dev jest`.
+* ESLint is applied and configured inside the `.eslintrc.js` file. Linting can be run with the command `npm run lint`.
+* Unit tests for the utility helper methods are written in Jest and can be run with the command `npm run test`.
+* Continous integration is incorporated into the respository by means of CircleCI.
+* SCSS is used as the CSS library (at present a FileWatcher is set up via the IDE to handle teh mapping to CSS; ideally this should form part of a Webpack bundling process).
 * jQueryUI is used for the dialog messages. A more contemporary UI library could be considered for future development work.
 
 ### Currently outstanding
-- [x] Continous integration to be incorporated into the respository.
-- [ ] ESLint to be configured.
 - [ ] Module bundling with Webpack 4 to be added (this has been implemented separately, but could not be successfully combined with Jest in time for the submission).
 
 ### Future development

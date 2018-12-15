@@ -1,10 +1,12 @@
+"use strict";
+
 let data = {};
 let allItems = [];
 let selection1 = [];
 let selection2 = [];    
 let isDiner1 = true;
 let isDiner2 = false;
-let util = new UtilHelper();
+let util = new UtilHelper(); /* eslint no-undef: 0 */ // --> OFF
 
 readData();
 
@@ -23,14 +25,14 @@ function readData() {
     let starters = data.starters;
     let mains = data.mains;
     let desserts = data.desserts;
-    console.log(data);
+    //console.log(data);
 
     _createFlatList();
     _buildCourse(starters, "starters");
     _buildCourse(mains, "mains");
     _buildCourse(desserts, "desserts");
   });
-};
+}
 
 /* =========================================================== */
 /* internal methods                                            */
@@ -49,7 +51,7 @@ function _buildCourse(course, id) {
     button2.innerHTML = "Deselect";
 
     // ------------------- EventListener BUTTON1 => SELECT
-    button1.addEventListener("click", event => {
+    button1.addEventListener("click", () => {
     // Add selections to array and set button enablement 
     let count = 0;
     if (isDiner1 && !isDiner2) {
@@ -57,7 +59,7 @@ function _buildCourse(course, id) {
       let total = util.calculateDinerBill(allItems, selection1);
       _showCostSoFarBill1(total);
     } else if (!isDiner1 && isDiner2) {
-      count = _setUIComponents(selection2, course[i].name, "list2")
+      count = _setUIComponents(selection2, course[i].name, "list2");
       let total = util.calculateDinerBill(allItems, selection2);
       _showCostSoFarBill2(total);
     }
@@ -72,7 +74,7 @@ function _buildCourse(course, id) {
   });
 
   // ------------------- EventListener BUTTON2 => DESELCT
-  button2.addEventListener("click", event => {
+  button2.addEventListener("click", () => {
    // Add selections to array and set button enablement 
     let count = 0;
     if (isDiner1 && !isDiner2) {
@@ -119,24 +121,24 @@ function _buildCourse(course, id) {
     courseDiv.appendChild(button2);
     courseDiv.appendChild(document.createElement("br"));
   }
-};
+}
 
 function _showCostSoFarBill1(total) {
   let bill = document.getElementById("billDiner1");
   bill.textContent = `Bill for Diner1: £ ${util.intToFloat(total)}.`;
-};
+}
 
 function _showCostSoFarBill2(total) {
   let bill = document.getElementById("billDiner2");
   bill.textContent = `Bill for Diner1: £ ${util.intToFloat(total)}.`;
-};
+}
 
 function _createFlatList() {
   allItems = [];
   allItems.push.apply(allItems, data.starters);
   allItems.push.apply(allItems, data.mains);
   allItems.push.apply(allItems, data.desserts);
-};
+}
 
 function _resetButtonStates() {
   for (let i = 0, l = allItems.length; i < l; ++i) {
@@ -145,7 +147,7 @@ function _resetButtonStates() {
     let selectButton = document.getElementById("select-" + allItems[i].name);
     selectButton.disabled = false;
   }
-};
+}
 
 function _setButtonVisiblity() {
   for (let i = 0, l = allItems.length; i < l; ++i) {
@@ -154,7 +156,7 @@ function _setButtonVisiblity() {
     let button2 = document.getElementById("deselect-" + allItems[i].name);
     button2.style.visibility = "";
   }
-};
+}
 
 function _setUIComponents(selection, courseName, listID) {
   // Method with side effects (not ideal)
@@ -170,7 +172,7 @@ function _setUIComponents(selection, courseName, listID) {
     list.textContent = menuList;
   } 
   return count;
-};
+}
 
 /* =========================================================== */
 /* event handlers                                              */
@@ -181,14 +183,14 @@ function onSelectDiner1() {
   _setButtonVisiblity();
   isDiner1 = true;
   isDiner2 = false;
-};
+}
 
 function onSelectDiner2() {
   _resetButtonStates();
   _setButtonVisiblity();
   isDiner1 = false;
   isDiner2 = true;
-};
+}
 
 function onFinaliseOrder() {
   // Combine selections
@@ -197,7 +199,7 @@ function onFinaliseOrder() {
   itemsSelected.push.apply(itemsSelected, selection2);
   _orderValidation(itemsSelected, selection1, "Diner 1");
   _orderValidation(itemsSelected, selection2, "Diner 2");
-};
+}
 
 function _orderValidation(itemsSelected, selection, diner) {
     // Dialog error messages for insufficent selection size
@@ -208,10 +210,10 @@ function _orderValidation(itemsSelected, selection, diner) {
         let message = "";
         if (selection.length < 1) {
           message = `No courses were selected for ${diner}. You need to add at least two courses for two people, ` + 
-          `of which one needs to be a main course.`;
+          "of which one needs to be a main course.";
         } else if (selection.length < 2) {
           message = `Only one course was selected for ${diner}. You need to add at least two courses for two people, ` + 
-          `of which one needs to be a main course.`;  
+          "of which one needs to be a main course.";  
         }
         util.createDialog(title, message);
       } );
@@ -254,5 +256,5 @@ function _orderValidation(itemsSelected, selection, diner) {
       let total = util.calculateTotalBill(allItems, selection1, selection2);
       bill.textContent = `Total bill: £ ${util.intToFloat(total)}.`;
     }
-};
+}
 
