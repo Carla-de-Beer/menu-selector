@@ -9,18 +9,27 @@ let util = new UtilHelper();
 readData();
 
 function readData() {  
-      util.loadJSON("mockdata/menu-data.json", response => {
-      data = JSON.parse(response);
-      let starters = data.starters;
-      let mains = data.mains;
-      let desserts = data.desserts;
-      console.log(data);
+  let button = document.getElementById("diner1");
+  button.addEventListener("click", onSelectDiner1, false);
 
-      _createFlatList();
-      _buildCourse(starters, "starters");
-      _buildCourse(mains, "mains");
-      _buildCourse(desserts, "desserts");
-    });
+  button = document.getElementById("diner2");
+  button.addEventListener("click", onSelectDiner2, false);
+
+  button = document.getElementById("finaliseOrder");
+  button.addEventListener("click", onFinaliseOrder, false);
+
+  util.loadJSON("mockdata/menu-data.json", response => {
+    data = JSON.parse(response);
+    let starters = data.starters;
+    let mains = data.mains;
+    let desserts = data.desserts;
+    console.log(data);
+
+    _createFlatList();
+    _buildCourse(starters, "starters");
+    _buildCourse(mains, "mains");
+    _buildCourse(desserts, "desserts");
+  });
 };
 
 /* =========================================================== */
