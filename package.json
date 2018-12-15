@@ -1,36 +1,30 @@
 {
-  "name": "ot-menu-test",
+  "name": "menu",
   "version": "1.0.0",
-  "description": "A small scaffold application for building ot-menu",
-  "main": "index.js",
+  "description": "Menu selector",
+  "main": "/scripts/menu.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
   "scripts": {
-    "build": "webpack-dev-server --mode development --open",
-    "build:prod": "webpack --mode=production"
+    "test": "jest"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carla-de-Beer/Menu-Selector.git"
+  },
+  "author": "cadebe",
   "license": "ISC",
-  "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+  "bugs": {
+    "url": "https://github.com/Carla-de-Beer/Menu-Selector/issues"
   },
+  "homepage": "https://github.com/Carla-de-Beer/Menu-Selector#readme",
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.4",
-    "babel-preset-es2015": "^6.24.1",
-    "clean-webpack-plugin": "^1.0.0",
-    "css-loader": "^2.0.0",
-    "file-loader": "^2.0.0",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
-  },
-  "keywords": []
+    "jest": "^23.6.0"
+  }
 }
