@@ -69,7 +69,7 @@ p {
 .baseCourse {
   position: absolute;
   width: 350px;
-  padding: 15px 25px 35px 35px;
+  padding: 15px 25px 15px 35px;
 }
 
 .starters {
@@ -114,20 +114,20 @@ p {
 .diner1 {
   @extend .baseDiner;
   left: 0;
-  top: 595px;
+  top: 545px;
 }
 
 .diner2 {
   @extend .baseDiner;
   left: 420px;
-  top: 595px;
+  top: 545px;
 }
 
 .finaliseOrder {
   @extend .baseDiner;
   width: auto;
   left: 840px;
-  top: 595px;
+  top: 545px;
 }
 
 .baseList {
@@ -142,31 +142,31 @@ p {
 .list1 {
   @extend .baseList;
   left: 0;
-  top: 630px;
+  top: 590px;
 }
 
 .list2 {
   @extend .baseList;
   left: 420px;
-  top: 630px;
+  top: 590px;
 }
 
 .billDiner1 {
   @extend .baseList;
   left: 190px;
-  top: 577px;
+  top: 530px;
 }
 
 .billDiner2 {
   @extend .baseList;
   left: 610px;
-  top: 577px;
+  top: 530px;
 }
 
 .billTotal {
   @extend .baseList;
   left: 1020px;
-  top: 577px;
+  top: 530px;
 }
 
 .btn:focus {

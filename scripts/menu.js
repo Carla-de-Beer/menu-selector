@@ -43,87 +43,63 @@ function readData() {
 function _buildCourse(course, id) {
   "use strict";
   for (let i = 0, l = course.length; i < l; ++i) {
-    const button1 = document.createElement("button");
-    button1.innerHTML = "Select";
-    button1.id = "select-" + course[i].name;
-    button1.style.visibility = "hidden";
+    const label = document.createElement("label");
+    const checkbox = document.createElement("input");
+    const description = document.createTextNode(course[i].name);
 
-    const button2 = document.createElement("button");
-    button2.id = "deselect-" + course[i].name;
-    button2.style.visibility = "hidden";
-    button2.innerHTML = "Deselect";
+    label.className += "para1Bold";
+    checkbox.type = "checkbox";
+    checkbox.id = "checkbox-" + course[i].name;
+    checkbox.value = course[i].name;
+    checkbox.style.marginRight = "10px";
+    //$("input").checkboxradio(); // Problem wih clearing the jQueryUI checkboxes
 
-    // ------------------- EventListener BUTTON1 => SELECT
-    button1.addEventListener("click", () => {
-      // Add selections to array and set button enablement 
-      let count = 0;
+    label.appendChild(checkbox);
+    label.appendChild(description);
+
+    // Checkbox eventListener
+    checkbox.addEventListener("change", event => {
       if (isDiner1 && !isDiner2) {
-        count = _setUIComponents(selection1, course[i].name, "list1");
-        const total = util.calculateDinerBill(allItems, selection1);
-        _showCostSoFarBill1(total);
-      } else if (!isDiner1 && isDiner2) {
-        count = _setUIComponents(selection2, course[i].name, "list2");
-        const total = util.calculateDinerBill(allItems, selection2);
-        _showCostSoFarBill2(total);
-      }
+        if (event.srcElement.checked) {
+          selection1.push(course[i].name);
+        } else {
+          const index = selection1.indexOf(course[i].name);
+          if (index !== -1) {
+            selection1.splice(index, 1);
+          }
+        }
 
-      // Update paragraph
-      const para1 = document.getElementById(course[i].name);
-      if (count === 0) {
-        para1.textContent = course[i].name;
-      } else {
-        para1.textContent = course[i].name + ": " + count + " selected";
+        _setUIComponents(selection1, "list1");
+        _showCostSoFarBill1(util.calculateDinerBill(allItems, selection1));
+      } else if (!isDiner1 && isDiner2) {
+        if (event.srcElement.checked) {
+          selection2.push(course[i].name);
+        } else {
+          const index = selection2.indexOf(course[i].name);
+          if (index !== -1) {
+            selection2.splice(index, 1);
+          }
+        }
+        _setUIComponents(selection2, "list2");
+        _showCostSoFarBill2(util.calculateDinerBill(allItems, selection2));
       }
     });
 
-    // ------------------- EventListener BUTTON2 => DESELCT
-    button2.addEventListener("click", () => {
-      // Add selections to array and set button enablement 
-      let count = 0;
-      if (isDiner1 && !isDiner2) {
-        selection1.splice(course[i].name);
-        // Count number of occurrences of item in array
-        count = util.countOccurrences(selection1, course[i].name);
-        const total = util.calculateDinerBill(allItems, selection1);
-        _showCostSoFarBill2(total);
-      } else if (!isDiner1 && isDiner2) {
-        selection2.splice(course[i].name);
-        // Count number of occurrences of item in array
-        count = util.countOccurrences(selection2, course[i].name);
-        const total = util.calculateDinerBill(allItems, selection2);
-        _showCostSoFarBill2(total);
-      }
-
-      if (count < 1) {
-        // Set selection button states to prevent duplicate selections
-        const selectButton = document.getElementById("select-" + course[i].name);
-        selectButton.disabled = false;
-      }
-
-      // Update paragraph
-      const para1 = document.getElementById(course[i].name);
-      if (count === 0) {
-        para1.textContent = course[i].name;
-      } else {
-        para1.textContent = course[i].name + ": " + count + " selected";
-      }
-    });
-
-    const paragraph1 = document.createElement("p");
-    paragraph1.id = course[i].name;
-    paragraph1.textContent = course[i].name;
-    paragraph1.className += "para1Bold";
-
-    const paragraph2 = document.createElement("p");
-    paragraph2.textContent = "£" + util.intToFloat(course[i].price);
+    const priceParagraph = document.createElement("p");
+    priceParagraph.textContent = "£" + util.intToFloat(course[i].price);
 
     const courseDiv = document.getElementById(id);
-    courseDiv.appendChild(paragraph1);
-    courseDiv.appendChild(paragraph2);
-    courseDiv.appendChild(button1);
-    courseDiv.appendChild(button2);
+    courseDiv.appendChild(label);
+    courseDiv.appendChild(priceParagraph);
     courseDiv.appendChild(document.createElement("br"));
   }
+}
+
+function _setUIComponents(selection, listID) {
+  const list = document.getElementById(listID);
+  const menuList = util.splitArrayIntoString(selection);
+  list.textContent = menuList;
+
 }
 
 function _showCostSoFarBill1(total) {
@@ -143,39 +119,15 @@ function _createFlatList() {
   allItems.push.apply(allItems, data.desserts);
 }
 
-function _resetButtonStates() {
-  for (let i = 0, l = allItems.length; i < l; ++i) {
-    const para1 = document.getElementById(allItems[i].name);
-    para1.textContent = allItems[i].name;
-    const selectButton = document.getElementById("select-" + allItems[i].name);
-    selectButton.disabled = false;
+function _resetCheckboxStates(selection) {
+  // First set to false all previous selections
+  $("input[type=checkbox]").each(function () {
+    this.checked = false;
+  });
+  // Now select the ones pertaining the diner in question
+  for (let i = 0, l = selection.length; i < l; ++i) {
+    document.getElementById("checkbox-" + selection[i]).checked = true;
   }
-}
-
-function _setButtonVisiblity() {
-  for (let i = 0, l = allItems.length; i < l; ++i) {
-    const button1 = document.getElementById("select-" + allItems[i].name);
-    button1.style.visibility = "";
-    const button2 = document.getElementById("deselect-" + allItems[i].name);
-    button2.style.visibility = "";
-  }
-}
-
-function _setUIComponents(selection, courseName, listID) {
-  "use strict";
-  // Method with side effects (not ideal)
-  selection.push(courseName);
-  // Count number of occurrences of item in array
-  const count = util.countOccurrences(selection, courseName);
-  if (count > 0) {
-    // Set selection button states to prevent duplicate selections
-    const selectButton = document.getElementById("select-" + courseName);
-    selectButton.disabled = true;
-    const list = document.getElementById(listID);
-    const menuList = util.splitArrayIntoString(selection);
-    list.textContent = menuList;
-  }
-  return count;
 }
 
 /* =========================================================== */
@@ -183,17 +135,15 @@ function _setUIComponents(selection, courseName, listID) {
 /* =========================================================== */
 
 function onSelectDiner1() {
-  _resetButtonStates();
-  _setButtonVisiblity();
   isDiner1 = true;
   isDiner2 = false;
+  _resetCheckboxStates(selection1);
 }
 
 function onSelectDiner2() {
-  _resetButtonStates();
-  _setButtonVisiblity();
   isDiner1 = false;
   isDiner2 = true;
+  _resetCheckboxStates(selection2);
 }
 
 function onFinaliseOrder() {
@@ -214,10 +164,12 @@ function _orderValidation(itemsSelected, selection, diner) {
       const title = `Add selections for ${diner}`;
       let message = "";
       if (selection.length < 1) {
-        message = `No courses were selected for ${diner}. You need to add at least two courses for two people, ` +
+        message =
+          `No courses were selected for ${diner}. You need to add at least two courses for two people, ` +
           "of which one needs to be a main course.";
       } else if (selection.length < 2) {
-        message = `Only one course was selected for ${diner}. You need to add at least two courses for two people, ` +
+        message =
+          `Only one course was selected for ${diner}. You need to add at least two courses for two people, ` +
           "of which one needs to be a main course.";
       }
       util.createDialog(title, message);
@@ -227,9 +179,11 @@ function _orderValidation(itemsSelected, selection, diner) {
     // Show error dialog in the event of no mains selections made
     let countMains = 0;
     for (let i = 0, l = selection.length; i < l; ++i) {
-      if (_.find(data.mains, entry => {
+      if (
+        _.find(data.mains, entry => {
           return entry.name === selection[i];
-        }) !== undefined) {
+        }) !== undefined
+      ) {
         countMains++;
       }
     }
@@ -244,15 +198,20 @@ function _orderValidation(itemsSelected, selection, diner) {
       // This means we are ok to go - just need to make two more checks ...
       if (util.countOccurrences(itemsSelected, "Cheesecake") === 2) {
         const title = "Oops ...";
-        const message = "Sorry, but we seem to have run out of cheesecake! We only have one piece left. " +
+        const message =
+          "Sorry, but we seem to have run out of cheesecake! We only have one piece left. " +
           "Please choose from another dessert menu item and recalculate your bill.";
         util.createDialog(title, message);
         return;
       }
       // Check for seafood combination
-      if (_.indexOf(selection, "Prawn cocktail") > -1 && _.indexOf(selection, "Salmon fillet") > -1) {
+      if (
+        _.indexOf(selection, "Prawn cocktail") > -1 &&
+        _.indexOf(selection, "Salmon fillet") > -1
+      ) {
         const title = "Oops ...";
-        const message = "Sorry, but we don't allow the combination of the prawn cocktail and the salmon fillet in any one menu order! " +
+        const message =
+          "Sorry, but we don't allow the combination of the prawn cocktail and the salmon fillet in any one menu order! " +
           "Please choose from another starter and mains menu combination and recalculate your bill.";
         util.createDialog(title, message);
         return;
@@ -262,5 +221,7 @@ function _orderValidation(itemsSelected, selection, diner) {
     const bill = document.getElementById("billTotal");
     const total = util.calculateTotalBill(allItems, selection1, selection2);
     bill.textContent = `Total bill: £ ${util.intToFloat(total)}.`;
+    bill.style.color = "red";
+
   }
 }
