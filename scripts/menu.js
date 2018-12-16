@@ -68,7 +68,6 @@ function _buildCourse(course, id) {
             selection1.splice(index, 1);
           }
         }
-
         _setUIComponents(selection1, "list1");
         _showCostSoFarBill1(util.calculateDinerBill(allItems, selection1));
       } else if (!isDiner1 && isDiner2) {
@@ -87,6 +86,7 @@ function _buildCourse(course, id) {
 
     const priceParagraph = document.createElement("p");
     priceParagraph.textContent = "£" + util.intToFloat(course[i].price);
+    priceParagraph.style.marginLeft = "25px";
 
     const courseDiv = document.getElementById(id);
     courseDiv.appendChild(label);
@@ -99,7 +99,6 @@ function _setUIComponents(selection, listID) {
   const list = document.getElementById(listID);
   const menuList = util.splitArrayIntoString(selection);
   list.textContent = menuList;
-
 }
 
 function _showCostSoFarBill1(total) {

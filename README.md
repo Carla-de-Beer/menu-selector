@@ -32,3 +32,9 @@ A simple menu selector, written in plain vanilla JavaScript (ES6), that allows a
 - The menu data is provided by means of mockdata in a locally stored JSON file. In reality the data will be received live from a backend server. In this case the three course `<div>`'s in the UI need to be converted to scrollable elements.
 - A suitable framework should be used for the application so that internationalisation of the messages text can be included.
 - A more contemporary UI library could be considered for future development work.
+- The project was tested with Google Chrome. Other browsers will need to be tested for separately.
+- The UI was not built and tested on a 15" screen. It will need to be made to be more responsive for use any screensize, including for mobile platform use.
+
+<p align="center">
+  <img src="images/screenShot.png"/>
+</p>
