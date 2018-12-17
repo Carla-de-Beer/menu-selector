@@ -1,3 +1,5 @@
+@import "colours";
+
 body {
   padding: 0;
   margin: 0;
@@ -15,30 +17,21 @@ canvas {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.result {
-  @extend .baseText,
-  .baseParagraph;
-  position: relative;
-  top: -348px;
-  left: 650px;
-  font-weight: 500;
-}
-
 h3 {
   @extend .baseText;
-  color: #4b4b4b;
+  color: $text-main;
 }
 
 h4 {
   @extend .baseText;
-  color: #4b4b4b;
+  color: $text-main;
 }
 
 p {
-  @extend .baseText,
-  .baseParagraph;
+  @extend .baseText;
+  @extend .baseParagraph;
   font-weight: 100;
-  color: #77787E;
+  color: $text-secondary;
 }
 
 .container {
@@ -55,15 +48,15 @@ p {
 .para1 {
   @extend p;
   font-weight: 200;
-  color: #77787E;
+  color: $text-secondary;
   font-style: italic;
 }
 
 .para1Bold {
   @extend p;
-  font-weight: 180;
-  color: #77787E;
-  font-style: bold;
+  font-weight: bold;
+  color: $text-secondary;
+  font-style: normal;
 }
 
 .baseCourse {
@@ -75,7 +68,7 @@ p {
 .starters {
   @extend .baseCourse;
   // background: rgba(233, 187, 70, 0.5);
-  background-image: linear-gradient(rgba(240, 230, 220, 0.95), rgba(233, 187, 70, 0.5));
+  background-image: linear-gradient($background-1-starters, $background-2-starters);
   left: 0;
   top: 90px;
 }
@@ -83,7 +76,7 @@ p {
 .mains {
   @extend .baseCourse;
   // background: rgba(230, 129, 46, 0.5);
-  background-image: linear-gradient(rgba(240, 230, 220, 0.95), rgba(230, 129, 46, 0.5));
+  background-image: linear-gradient($background-1-mains, $background-2-mains);
   left: 420px;
   top: 90px;
 }
@@ -91,17 +84,17 @@ p {
 .desserts {
   @extend .baseCourse;
   //background: rgba(250, 94, 69, 0.5);
-  background-image: linear-gradient(rgba(240, 230, 220, 0.95), rgba(250, 94, 69, 0.5));
+  background-image: linear-gradient($background-1-desserts, $background-2-desserts);
   left: 840px;
   top: 90px;
 }
 
 .baseDiner {
   position: absolute;
-  color: #77787E;
+  color: $text-secondary;
   font-weight: bold;
   font-size: 13px;
-  background: #f6f6f6;
+  background: $background;
   padding: 18px;
   width: auto;
   outline: none;
@@ -128,6 +121,13 @@ p {
   width: auto;
   left: 840px;
   top: 545px;
+}
+
+.reset {
+  @extend .baseDiner;
+  width: auto;
+  left: 840px;
+  top: 610px;
 }
 
 .baseList {
@@ -167,35 +167,4 @@ p {
   @extend .baseList;
   left: 1020px;
   top: 530px;
-}
-
-.btn:focus {
-  outline: 0;
-}
-
-.btnBase {
-  width: 100px;
-  height: 40px;
-  margin-right: 7px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 4px;
-  font-family: Helvetica, Arial, sans-serif;
-  background-image: -webkit-linear-gradient(top, #f5f2f0, #e8eaeb);
-  background-image: -moz-linear-gradient(top, #f5f2f0, #e8eaeb);
-  background-image: -ms-linear-gradient(top, #f5f2f0, #e8eaeb);
-  background-image: -o-linear-gradient(top, #f5f2f0, #e8eaeb);
-  background-image: linear-gradient(to bottom, #f5f2f0, #e8eaeb);
-  font-size: 12px;
-  text-decoration: none;
-}
-
-.btnBase:hover {
-  background: #CECCCD;
-  text-decoration: none;
-  background-image: -webkit-linear-gradient(top, #F5F2F3, #CECCCD);
-  background-image: -moz-linear-gradient(top, #F5F2F3, #CECCCD);
-  background-image: -ms-linear-gradient(top, #F5F2F3, #CECCCD);
-  background-image: -o-linear-gradient(top, #F5F2F3, #CECCCD);
-  background-image: linear-gradient(to bottom, #F5F2F3, #CECCCD);
 }

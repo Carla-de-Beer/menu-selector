@@ -1,55 +1,60 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Menu Selector</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="images/favicon-16x16.png"
+    />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="css/jquery-ui.theme.css" />
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="lib/lodash.min.js"></script>
+    <script src="scripts/util.js"></script>
+    <script src="scripts/menu.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Menu Selector</title>
-  <link rel="shortcut icon" type="image/png" href="images/favicon-16x16.png" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <link rel="stylesheet" href="css/jquery-ui.theme.css" />
-  <link rel="stylesheet" href="css/jquery-ui.theme.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-  <script src="lib/lodash.min.js"></script>
-  <script src="scripts/util.js"></script>
-  <script src="scripts/menu.js"></script>
-</head>
-
-<body>
-  <div id="container" class="container">
-    <h3>Menu Selector</h3>
-    <h4>Choose from at least two courses each for two diners</h4>
-    <br />
-    <div id="starters" class="starters">
-      <h3>Starters</h3>
+  <body>
+    <div id="container" class="container">
+      <h3>Menu Selector</h3>
+      <h4>Choose from at least two courses each for two diners</h4>
+      <br />
+      <div id="starters" class="starters"><h3>Starters</h3></div>
+      <div id="mains" class="mains"><h3>Mains</h3></div>
+      <div id="desserts" class="desserts"><h3>Desserts</h3></div>
+      <br /><br />
+      <div>
+        <button id="diner1" class="diner1 ui-button- ui-widget ui-corner-all">
+          Selection for Diner 1
+        </button>
+        <p id="billDiner1" class="billDiner1">Bill for Diner 1: N/A</p>
+        <button id="diner2" class="diner2 ui-button- ui-widget ui-corner-all">
+          Selection for Diner 2
+        </button>
+        <p id="billDiner2" class="billDiner2">Bill for Diner 2: N/A</p>
+        <button
+          id="finaliseOrder"
+          class="finaliseOrder ui-button- ui-widget ui-corner-all"
+        >
+          Finalise your order
+        </button>
+        <button id="reset" class="reset ui-button- ui-widget ui-corner-all">
+          Reset selection
+        </button>
+        <p id="list1" class="list1">Nothing selected yet</p>
+        <p id="list2" class="list2">Nothing selected yet</p>
+        <p id="billTotal" class="billTotal">Total bill: N/A</p>
+      </div>
     </div>
-    <div id="mains" class="mains">
-      <h3>Mains</h3>
-    </div>
-    <div id="desserts" class="desserts">
-      <h3>Desserts</h3>
-    </div>
-    <br /><br />
-    <div>
-      <button id="diner1" class="diner1 ui-button- ui-widget ui-corner-all">
-        Selection for Diner 1
-      </button>
-      <p id="billDiner1" class="billDiner1">Bill for Diner 1: N/A</p>
-      <button id="diner2" class="diner2 ui-button- ui-widget ui-corner-all">
-        Selection for Diner 2
-      </button>
-      <p id="billDiner2" class="billDiner2">Bill for Diner 2: N/A</p>
-      <button id="finaliseOrder" class="finaliseOrder ui-button- ui-widget ui-corner-all">
-        Finalise your order
-      </button>
-      <p id="list1" class="list1">Nothing selected yet</p>
-      <p id="list2" class="list2">Nothing selected yet</p>
-      <p id="billTotal" class="billTotal">Total bill: N/A</p>
-    </div>
-  </div>
-  <div id="dialog"></div>
-</body>
-
+    <div id="dialog"></div>
+  </body>
 </html>

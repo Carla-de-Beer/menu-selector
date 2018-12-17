@@ -23,7 +23,8 @@ class UtilHelper {
 	}
 
 	splitArrayIntoString(array) {
-		if (array.constructor !== Array) {
+		if (arguments[0] === undefined || arguments[0] === null ||
+			array.constructor !== Array) {
 			return null;
 		}
 		let result = "";
@@ -37,7 +38,8 @@ class UtilHelper {
 	}
 
 	countOccurrences(array, value) {
-		if (arguments[0].constructor !== Array) {
+		if (arguments[0] === undefined || arguments[0] === null ||
+			arguments[0].constructor !== Array) {
 			return null;
 		}
 		let numFound = 0;
@@ -50,6 +52,13 @@ class UtilHelper {
 	}
 
 	calculateDinerBill(allItems, selection) {
+		if (arguments[0] === undefined || arguments[0] === null ||
+			arguments[1] === undefined || arguments[1] === null) {
+			return null;
+		} else if (arguments[0].constructor !== Array || arguments[1].constructor !== Array) {
+			return null;
+		}
+
 		let total = 0.0;
 		for (let i = 0, l = selection.length; i < l; ++i) {
 			const foundItem = _.find(allItems, entry => {
@@ -63,6 +72,15 @@ class UtilHelper {
 	}
 
 	calculateTotalBill(allItems, selection1, selection2) {
+		if (arguments[0] === undefined || arguments[0] === null ||
+			arguments[1] === undefined || arguments[1] === null ||
+			arguments[2] === undefined || arguments[2] === null) {
+			return null;
+		} else if (arguments[0].constructor !== Array ||
+			arguments[1].constructor !== Array || arguments[2].constructor !== Array) {
+			return null;
+		}
+
 		// Add all of the menu items to one array for a single loop
 		const combinedSelection = [];
 		combinedSelection.push.apply(combinedSelection, selection1);
@@ -80,6 +98,11 @@ class UtilHelper {
 	}
 
 	createDialog(title, message) {
+		if (arguments[0] === undefined || arguments[0] === null ||
+			arguments[1] === undefined || arguments[1] === null) {
+			return;
+		}
+
 		$("#dialog")
 			.attr("title", title)
 			.dialog();
@@ -98,7 +121,7 @@ class UtilHelper {
 				}
 			}
 		});
-		//$("#dialog").dialog("option", "title", title);
+		$("#dialog").dialog("option", "title", title);
 		$("#dialog").dialog("open");
 	}
 }
