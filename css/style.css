@@ -39,6 +39,12 @@ p, .para, .para1, .para1Bold {
   color: #77787E;
   font-style: normal; }
 
+.checkbox {
+  margin-right: 10px; }
+
+.priceParagraph {
+  margin-left: 25px; }
+
 .baseCourse, .starters, .mains, .desserts {
   position: absolute;
   width: 350px;
@@ -117,5 +123,8 @@ p, .para, .para1, .para1Bold {
 .billTotal {
   left: 1020px;
   top: 530px; }
+
+.finalBillText {
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */

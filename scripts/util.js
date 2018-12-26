@@ -7,7 +7,7 @@ class UtilHelper {
 		xobj.open("GET", filePath, true);
 		xobj.onreadystatechange = function () {
 			if (xobj.readyState === XMLHttpRequest.DONE) {
-				if (xobj.status === 200 || xobj.status == XMLHttpRequest.UNSENT) {
+				if (xobj.status === 200 || xobj.status === XMLHttpRequest.UNSENT) {
 					callback(xobj.responseText);
 				}
 			}

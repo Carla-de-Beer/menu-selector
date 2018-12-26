@@ -11,6 +11,7 @@ module.exports = {
     globals: {
         _: true
     },
+    extends: "",
     rules: {
         "arrow-body-style": ["error", "always"],
         "block-scoped-var": 2,

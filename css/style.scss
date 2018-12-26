@@ -59,6 +59,14 @@ p {
   font-style: normal;
 }
 
+.checkbox {
+  margin-right: 10px;
+}
+
+.priceParagraph {
+  margin-left: 25px;
+}
+
 .baseCourse {
   position: absolute;
   width: 350px;
@@ -167,4 +175,8 @@ p {
   @extend .baseList;
   left: 1020px;
   top: 530px;
+}
+
+.finalBillText {
+  color: red;
 }

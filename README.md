@@ -3,8 +3,6 @@
 [![Build Status](https://circleci.com/gh/Carla-de-Beer/Menu-Selector.png?&style=shield&circle-token=:circle-token)](https://circleci.com/gh/Carla-de-Beer/Matrix-Library)
 [![GitHub issues](https://img.shields.io/github/issues/Carla-de-Beer/Menu-Selector.svg?style=flat-square)](https://github.com/Carla-de-Beer/Menu-Selector/issues)
 
-[![npm version](https://badge.fury.io/js/eslint.svg)](https://badge.fury.io/js/eslint)
-
 A simple menu selector, written in plain vanilla JavaScript (ES6), that allows a user to book a meal, consisting of two courses, for two diners respectively. The project can be run simply with a local server.
 
 ### Booking rules
