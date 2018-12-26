@@ -29,3 +29,7 @@ jobs:
       - run:
           name: test
           command: npm test
+
+      - run:
+          name: lint
+          command: "./node_modules/.bin/eslint scripts/*.js"
