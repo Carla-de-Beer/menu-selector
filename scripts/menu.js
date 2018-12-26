@@ -6,7 +6,8 @@ let isDiner1 = true;
 let isDiner2 = false;
 const util = new UtilHelper(); /* eslint no-undef: 0 */ // --> OFF
 
-const enums = Object.freeze({ /* eslint-disable-line */
+const enums = Object.freeze({
+  /* eslint-disable-line */
   course: {
     starters: "starters",
     mains: "mains",
@@ -67,7 +68,7 @@ function onReset() {
   bill.setAttribute("style", "color: #77787E");
 
   // Set to false all previous selections
-  $("input[type=checkbox]").each(function () /* eslint-disable-line */ {
+  $("input[type=checkbox]").each(function() /* eslint-disable-line */ {
     this.checked = false;
   });
 }
@@ -77,16 +78,18 @@ function onReset() {
 /* =========================================================== */
 
 function readData() {
-  util.loadJSON("mockdata/menu-data.json", (response) => {
+  util.loadJSON("mockdata/menu-data.json", response => {
     init();
 
     // Load data
     data = JSON.parse(response);
 
     createFlatList();
-    buildCourse(data.starters, enums.course.starters);
-    buildCourse(data.mains, enums.course.mains);
-    buildCourse(data.desserts, enums.course.desserts);
+
+    const { starters, mains, desserts } = data;
+    buildCourse(starters, enums.course.starters);
+    buildCourse(mains, enums.course.mains);
+    buildCourse(desserts, enums.course.desserts);
   });
 }
 
@@ -105,17 +108,19 @@ function init() {
   button.addEventListener("click", onReset, false);
 
   // Add jQueryUI icon to reset button
-  $("#reset").button({
-    icons: {
-      primary: "ui-icon-arrowrefresh-1-e",
-    },
-  }).click(function (event) /* eslint-disable-line */ {
-    event.preventDefault();
-  });
+  $("#reset")
+    .button({
+      icons: {
+        primary: "ui-icon-arrowrefresh-1-e"
+      }
+    })
+    .click(function(event) /* eslint-disable-line */ {
+      event.preventDefault();
+    });
   // Dynamically set the width of the rest button to match that of the button above
   const buttonWidth = $("#finaliseOrder").outerWidth();
   $("#reset").css({
-    width: buttonWidth,
+    width: buttonWidth
   });
 }
 
@@ -198,18 +203,20 @@ function showCostSoFarBill2(total) {
 
 function resetCheckboxStates(selection) {
   // First set to false all previous selections
-  $("input[type=checkbox]").each(function () /* eslint-disable-line */ {
+  $("input[type=checkbox]").each(function() /* eslint-disable-line */ {
     this.checked = false;
   });
   // Now select the ones pertaining the diner in question
   for (let i = 0, l = selection.length; i < l; ++i) {
-    document.getElementById(enums.elementID.checkbox + selection[i]).checked = true;
+    document.getElementById(
+      enums.elementID.checkbox + selection[i]
+    ).checked = true;
   }
 }
 
 function showSelectionErrorMessage(selection, diner) {
   // Show error dialog in the event of no selections made
-  $(function () /* eslint-disable-line */ {
+  $(function() /* eslint-disable-line */ {
     const title = `Add selections for ${diner}`;
     let message = "";
     if (selection.length < 1) {
@@ -226,14 +233,16 @@ function orderValidation(itemsSelected, selection, diner) {
   // Dialog error messages for insufficent selection size
   if (selection.length < 2) {
     showSelectionErrorMessage(selection, diner);
-    return isOk = false;
+    return (isOk = false);
   } else if (selection.length >= 2) {
     // Show error dialog in the event of no mains selections made
     let countMains = 0;
     for (let i = 0, l = selection.length; i < l; ++i) {
-      if (_.find(data.mains, (entry) => {
+      if (
+        _.find(data.mains, entry => {
           return entry.name === selection[i];
-        }) !== undefined) {
+        }) !== undefined
+      ) {
         countMains++;
       }
     }
@@ -245,7 +254,10 @@ function orderValidation(itemsSelected, selection, diner) {
       showCheesecakeErrorMessage();
     }
     // Check for seafood combination
-    if (_.indexOf(selection, "Prawn cocktail") > -1 && _.indexOf(selection, "Salmon fillet") > -1) {
+    if (
+      _.indexOf(selection, "Prawn cocktail") > -1 &&
+      _.indexOf(selection, "Salmon fillet") > -1
+    ) {
       showSeafoodCombinationErrorMessage();
     }
   }
@@ -258,21 +270,23 @@ function showMainsIncorrectErrorMessage(diner) {
   let message = "";
   message = `You have not selected a main course item for ${diner}.`;
   util.createDialog(title, message);
-  return isOk = false;
+  return (isOk = false);
 }
 
 function showCheesecakeErrorMessage() {
   const title = "Oops ...";
-  const message = "Sorry, but we seem to have run out of cheesecake! We only have one piece left. Please choose from another dessert menu item and recalculate your bill.";
+  const message =
+    "Sorry, but we seem to have run out of cheesecake! We only have one piece left. Please choose from another dessert menu item and recalculate your bill.";
   util.createDialog(title, message);
-  return isOk = false;
+  return (isOk = false);
 }
 
 function showSeafoodCombinationErrorMessage() {
   const title = "Oops ...";
-  const message = "Sorry, but we don't allow the combination of the prawn cocktail and the salmon fillet in any one menu order! Please choose from another starter and mains menu combination and recalculate your bill.";
+  const message =
+    "Sorry, but we don't allow the combination of the prawn cocktail and the salmon fillet in any one menu order! Please choose from another starter and mains menu combination and recalculate your bill.";
   util.createDialog(title, message);
-  return isOk = false;
+  return (isOk = false);
 }
 
 function writeFinalBill() {
